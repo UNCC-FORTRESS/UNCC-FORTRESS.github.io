@@ -1,11 +1,378 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>UNCC FORTRESS Lab</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FORTRESS Lab at UNC Charlotte</title>
+  <meta name="description" content="FORTRESS: Formal Techniques for Resilient and Secure Systems at UNC Charlotte." />
+
+  <style>
+  :root{
+    --bg: #f7f9fc;
+    --panel: #ffffff;
+    --text: #1a1f36;
+    --muted: #4a5568;
+    --line: #e2e8f0;
+    --accent: #2f855a;   /* UNC green style */
+    --link: #2563eb;     /* calm academic blue */
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --radius: 14px;
+    --maxw: 1040px;
+  }
+
+  *{ box-sizing: border-box; }
+  html, body{ height: 100%; }
+
+  body{
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    color: var(--text);
+    background:
+      linear-gradient(180deg, #ffffff, #f7f9fc 60%);
+    line-height: 1.6;
+  }
+
+  a{ color: var(--link); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+
+  .wrap{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 24px 18px 80px;
+  }
+
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .brand{
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+
+  .brand .name{
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: 0.3px;
+  }
+
+  .brand .tag{
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .menu{
+    display: flex;
+    gap: 14px;
+    font-size: 13px;
+  }
+
+  .menu a{
+    color: var(--muted);
+    padding: 6px 10px;
+    border-radius: 10px;
+  }
+
+  .menu a:hover{
+    background: #edf2f7;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .hero{
+    margin-top: 26px;
+    padding: 30px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+
+  .hero h1{
+    margin: 0 0 10px;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.15;
+  }
+
+  .hero p{
+    margin: 0 0 16px;
+    color: var(--muted);
+    max-width: 860px;
+    font-size: 15px;
+  }
+
+  .cta{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .btn{
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .btn:hover{
+    background: #f1f5f9;
+    text-decoration: none;
+  }
+
+  .btn.primary{
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+  }
+
+  .btn.primary:hover{
+    background: #276749;
+  }
+
+  .pillrow{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .pill{
+    font-size: 12px;
+    border: 1px solid var(--line);
+    padding: 6px 10px;
+    border-radius: 999px;
+    color: var(--muted);
+    background: #f8fafc;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+    margin-top: 18px;
+  }
+
+  .card{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .card h2{
+    margin: 0 0 10px;
+    font-size: 17px;
+  }
+
+  .muted{ color: var(--muted); }
+
+  .span6{ grid-column: span 6; }
+  .span7{ grid-column: span 7; }
+  .span5{ grid-column: span 5; }
+  .span12{ grid-column: span 12; }
+
+  ul{
+    margin: 8px 0 0;
+    padding-left: 18px;
+  }
+
+  li{ margin: 6px 0; }
+
+  .footer{
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 880px){
+    .span7, .span6, .span5{ grid-column: span 12; }
+    .brand .tag{ display: none; }
+  }
+</style>
 </head>
+
 <body>
-  <h1>UNCC FORTRESS Lab</h1>
-  <p>Formal Techniques for Resilient & Secure Systems</p>
+  <header>
+    <div class="nav">
+      <div class="brand" aria-label="Site title">
+        <div class="name">FORTRESS Lab</div>
+        <div class="tag">FORmal Techniques for REsilient and Secure Systems</div>
+      </div>
+      <nav class="menu" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#people">People</a>
+        <a href="#publications">Publications</a>
+        <a href="#join">Join</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="top">
+      <h1>FORTRESS: Formal Techniques for Resilient and Secure Systems</h1>
+      <p>
+        We study formal methods for correctness and security of computer systems, with a focus on cyber physical systems.
+        We develop reasoning techniques and enforcement mechanisms that support secure and dependable systems.
+      </p>
+
+      <div class="cta">
+        <a class="btn primary" href="#join">Open positions and how to join</a>
+        <a class="btn" href="https://jianxiang.info/" target="_blank" rel="noopener">PI website</a>
+        <a class="btn" href="mailto:jian.xiang@charlotte.edu">Email</a>
+      </div>
+
+      <div class="pillrow" aria-label="Research keywords">
+        <div class="pill">formal methods for security</div>
+        <div class="pill">verification</div>
+        <div class="pill">cyber physical systems</div>
+        <div class="pill">programming languages</div>
+        <div class="pill">robustness and attacks</div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Main content">
+      <div class="card span7" id="about">
+        <h2>About</h2>
+        <p class="muted">
+          FORTRESS is a research group at UNC Charlotte working on formal foundations and tools for secure and reliable systems.
+          Our work emphasizes mathematical proofs and verification techniques to show that no attack strategy can cause a system to misbehave.
+        </p>
+        <p class="muted" style="margin-top:10px">
+          Principal Investigator: <strong>Jian Xiang</strong>, Assistant Professor, Software and Information Systems, College of Computing and Informatics.
+        </p>
+      </div>
+
+      <div class="card span5" id="contact">
+        <h2>Contact</h2>
+        <div class="muted">
+          Email: <a href="mailto:jian.xiang@charlotte.edu">jian.xiang@charlotte.edu</a><br />
+          Office: Woodward Hall 330D, UNC Charlotte<br />
+          PI site: <a href="https://jianxiang.info/" target="_blank" rel="noopener">jianxiang.info</a>
+        </div>
+      </div>
+
+      <div class="card span6" id="research">
+        <h2>Research themes</h2>
+        <ul>
+          <li>Formal methods for security and resilience in cyber physical systems</li>
+          <li>Quantitative robustness analysis under sensor and timed attacks</li>
+          <li>Relational reasoning in dynamic logics</li>
+          <li>Information flow analysis and language based security</li>
+          <li>Runtime enforcement mechanisms grounded in formal guarantees</li>
+        </ul>
+      </div>
+
+      <div class="card span6" id="publications">
+        <h2>Selected recent publications</h2>
+        <ul class="pubs">
+          <li>
+            <a href="https://jianxiang.info/pub/CSF25.pdf" target="_blank" rel="noopener">
+              Formal Robustness for Cyber Physical Systems under Timed Attacks
+            </a><br />
+            <span class="venue">IEEE CSF, 2025</span>
+          </li>
+          <li>
+            <a href="https://jianxiang.info/" target="_blank" rel="noopener">
+              Extending Dynamic Logics with First Class Relational Reasoning
+            </a><br />
+            <span class="venue">NASA Formal Methods Symposium, 2025</span>
+          </li>
+          <li>
+            <a href="https://jianxiang.info/" target="_blank" rel="noopener">
+              Measuring Robustness in Cyber Physical Systems under Sensor Attacks
+            </a><br />
+            <span class="venue">Nonlinear Analysis: Hybrid Systems, 2025</span>
+          </li>
+        </ul>
+        <p class="muted" style="margin-top:10px">
+          For a full list, see <a href="https://jianxiang.info/publications" target="_blank" rel="noopener">here</a>.
+        </p>
+      </div>
+
+    <div class="card span6" id="people">
+      <h2>People</h2>
+      <ul>
+        <li>
+          <a href="https://jianxiang.info/" target="_blank" rel="noopener">
+            Jian Xiang (PI)
+          </a>
+        </li>
+        <li>
+          <a href="#" target="_blank" rel="noopener">
+            Tahmid Chowdhury (PhD)
+          </a>
+        </li>
+        <li>
+          Utkarsh Parashar (master)</li>
+        <li>
+            Sai Phanindra Kothuri (master)
+        </li>
+        <li>
+            Ramnarayanan Sankar (Alumni)
+        </li>
+      </ul>  
+
+    </div>
+
+      <div class="card span6" id="join">
+        <h2>Join the lab</h2>
+        <p class="muted">
+          We welcome self motivated PhD students and undergraduates interested in building secure and pragmatic systems using formal methods.
+        </p>
+        <ul>
+          <li>If you are at UNC Charlotte, email or stop by to chat</li>
+          <li>If you are not yet admitted, apply through the usual channels and then reach out</li>
+          <li>When emailing, please include your interests and why they align with our work</li>
+        </ul>
+        <p class="muted" style="margin-top:10px">
+          More details: <a href="https://jianxiang.info/prospectivestudents.html" target="_blank" rel="noopener">Information for prospective students</a>
+        </p>
+      </div>
+
+      <div class="card span12" id="news">
+        <h2>News</h2>
+        <ul>
+          <li><span class="muted">We will hold group seminar at Woodward 309 most Fridays between 12-1pm. See this calendar for the schedule. Feel free to drop by.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>FORTRESS Lab at UNC Charlotte</div>
+      <div>
+        <a href="#top">Back to top</a>
+      </div>
+    </div>
+  </main>
 </body>
 </html>
